@@ -1,0 +1,437 @@
+{
+  "name": "multi",
+  "test_cases": [
+    {
+      "id": 1,
+      "name": "Hub Account for FX Currencies",
+      "meta": {
+        "info": "Hub Account"
+      },
+      "requests": [
+        {
+          "id": 1,
+          "meta": {
+            "info": "Add Hub Account-HUB_MULTILATERAL_SETTLEMENT"
+          },
+          "description": "Add Hub Account-HUB_MULTILATERAL_SETTLEMENT for FX_SOURCE_CURRENCY",
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/participants/{name}/accounts",
+          "path": "/participants/Hub/accounts",
+          "method": "post",
+          "params": {
+            "name": "Hub"
+          },
+          "body": {
+            "type": "HUB_MULTILATERAL_SETTLEMENT",
+            "currency": "{$inputs.FX_SOURCE_CURRENCY}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "meta": {
+            "info": "Add Hub Account-HUB_RECONCILIATION"
+          },
+          "description": "Add Hub Account-HUB_RECONCILIATION for FX_SOURCE_CURRENCY",
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/participants/{name}/accounts",
+          "path": "/participants/Hub/accounts",
+          "method": "post",
+          "params": {
+            "name": "Hub"
+          },
+          "body": {
+            "type": "HUB_RECONCILIATION",
+            "currency": "{$inputs.FX_SOURCE_CURRENCY}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 6,
+          "meta": {
+            "info": "Add Hub Account-HUB_MULTILATERAL_SETTLEMENT Second Currency"
+          },
+          "description": "Add Hub Account-HUB_MULTILATERAL_SETTLEMENT for FX_TARGET_CURRENCY",
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/participants/{name}/accounts",
+          "path": "/participants/Hub/accounts",
+          "method": "post",
+          "params": {
+            "name": "Hub"
+          },
+          "body": {
+            "type": "HUB_MULTILATERAL_SETTLEMENT",
+            "currency": "{$inputs.FX_TARGET_CURRENCY}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 7,
+          "meta": {
+            "info": "Add Hub Account-HUB_RECONCILIATION Second Currency"
+          },
+          "description": "Add Hub Account-HUB_RECONCILIATION for FX_TARGET_CURRENCY",
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/participants/{name}/accounts",
+          "path": "/participants/Hub/accounts",
+          "method": "post",
+          "params": {
+            "name": "Hub"
+          },
+          "body": {
+            "type": "HUB_RECONCILIATION",
+            "currency": "{$inputs.FX_TARGET_CURRENCY}"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "fileInfo": {
+        "path": "switch/onboarding/hub.json"
+      }
+    },
+    {
+      "id": 2,
+      "type": "Settlement Models",
+      "name": "Settlement Models for FX currencies if needed",
+      "requests": [
+        {
+          "id": 2,
+          "meta": {
+            "info": "Create settlement model DEFERRED NET USD"
+          },
+          "description": "Create settlement model DEFERRED NET for FX_SOURCE_CURRENCY",
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/settlementModels",
+          "path": "/settlementModels",
+          "method": "post",
+          "body": {
+            "name": "DEFERREDNET{$inputs.FX_SOURCE_CURRENCY}",
+            "settlementGranularity": "NET",
+            "settlementInterchange": "MULTILATERAL",
+            "settlementDelay": "DEFERRED",
+            "requireLiquidityCheck": true,
+            "ledgerAccountType": "POSITION",
+            "autoPositionReset": true,
+            "currency": "{$inputs.currency}",
+            "settlementAccountType": "SETTLEMENT"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          },
+          "disabled": true
+        },
+        {
+          "id": 3,
+          "description": "Create settlement model DEFERRED NET for FX_TARGET_CURRENCY",
+          "meta": {
+            "info": "Create settlement model DEFERRED NET USD"
+          },
+          "apiVersion": {
+            "minorVersion": 0,
+            "majorVersion": 1,
+            "type": "central_admin"
+          },
+          "operationPath": "/settlementModels",
+          "path": "/settlementModels",
+          "method": "post",
+          "body": {
+            "name": "DEFERREDNET{$inputs.FX_TARGET_CURRENCY}",
+            "settlementGranularity": "NET",
+            "settlementInterchange": "MULTILATERAL",
+            "settlementDelay": "DEFERRED",
+            "requireLiquidityCheck": true,
+            "ledgerAccountType": "POSITION",
+            "autoPositionReset": true,
+            "currency": "{$inputs.currency}",
+            "settlementAccountType": "SETTLEMENT"
+          },
+          "headers": {
+            "Content-Type": "application/json",
+            "FSPIOP-Source": "hub_operator"
+          },
+          "url": "{$inputs.HOST_CENTRAL_LEDGER}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 if not exists or 400 if exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.status).to.equal(400)",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          },
+          "disabled": true
+        }
+      ],
+      "fileInfo": {
+        "path": "switch/onboarding/hub.json"
+      }
+    },
+    {
+      "id": 3,
+      "type": "Oracle Onboarding",
+      "name": "Oracle Onboarding if needed",
+      "requests": [
+        {
+          "id": 1,
+          "meta": {
+            "info": "Register MSISDN Oracle"
+          },
+          "description": "Register MSISDN Oracle",
+          "apiVersion": {
+            "minorVersion": 1,
+            "majorVersion": 1,
+            "type": "als_admin"
+          },
+          "operationPath": "/oracles",
+          "path": "/oracles",
+          "method": "post",
+          "body": {
+            "oracleIdType": "MSISDN",
+            "endpoint": {
+              "value": "{$inputs.HOST_SIMULATOR}/oracle",
+              "endpointType": "URL"
+            },
+            "currency": "{$inputs.FX_TARGET_CURRENCY}",
+            "isDefault": true
+          },
+          "headers": {
+            "Content-Type": "application/vnd.interoperability.participants+json;version=1.0",
+            "Accept": "application/vnd.interoperability.participants+json;version=1",
+            "Date": "{$function.generic.curDate}"
+          },
+          "url": "{$inputs.HOST_ACCOUNT_LOOKUP_ADMIN}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 or errorCode 2001 already exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.body.errorInformation.errorCode).to.equal(\"2001\")",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          },
+          "disabled": true
+        },
+        {
+          "id": 2,
+          "meta": {
+            "info": "Register BUSINESS Oracle"
+          },
+          "description": "Register BUSINESS Oracle",
+          "apiVersion": {
+            "minorVersion": 1,
+            "majorVersion": 1,
+            "type": "als_admin"
+          },
+          "operationPath": "/oracles",
+          "path": "/oracles",
+          "method": "post",
+          "body": {
+            "oracleIdType": "BUSINESS",
+            "endpoint": {
+              "value": "{$inputs.HOST_SIMULATOR}/oracle",
+              "endpointType": "URL"
+            },
+            "currency": "{$inputs.FX_TARGET_CURRENCY}",
+            "isDefault": true
+          },
+          "headers": {
+            "Content-Type": "application/vnd.interoperability.participants+json;version=1.0",
+            "Accept": "application/vnd.interoperability.participants+json;version=1",
+            "Date": "{$function.generic.curDate}"
+          },
+          "url": "{$inputs.HOST_ACCOUNT_LOOKUP_ADMIN}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 or errorCode 2001 already exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.body.errorInformation.errorCode).to.equal(\"2001\")",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          },
+          "disabled": true
+        },
+        {
+          "id": 3,
+          "meta": {
+            "info": "Register ALIAS Oracle"
+          },
+          "description": "Register ALIAS Oracle",
+          "apiVersion": {
+            "minorVersion": 1,
+            "majorVersion": 1,
+            "type": "als_admin"
+          },
+          "operationPath": "/oracles",
+          "path": "/oracles",
+          "method": "post",
+          "body": {
+            "oracleIdType": "ALIAS",
+            "endpoint": {
+              "value": "{$inputs.HOST_SIMULATOR}/oracle",
+              "endpointType": "URL"
+            },
+            "currency": "{$inputs.FX_TARGET_CURRENCY}",
+            "isDefault": true
+          },
+          "headers": {
+            "Content-Type": "application/vnd.interoperability.participants+json;version=1.0",
+            "Accept": "application/vnd.interoperability.participants+json;version=1",
+            "Date": "{$function.generic.curDate}"
+          },
+          "url": "{$inputs.HOST_ACCOUNT_LOOKUP_ADMIN}",
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "status to be 201 or errorCode 2001 already exists",
+                "exec": [
+                  "if (response.body.errorInformation) {",
+                  "  expect(response.body.errorInformation.errorCode).to.equal(\"2001\")",
+                  "} else {",
+                  "  expect(response.status).to.equal(201)",
+                  "}"
+                ]
+              }
+            ]
+          },
+          "disabled": true
+        }
+      ],
+      "fileInfo": {
+        "path": "switch/onboarding/hub.json"
+      }
+    }
+  ]
+}

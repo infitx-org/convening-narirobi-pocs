@@ -1,0 +1,16 @@
+{
+  "order": [
+    {
+      "name": "sdk_fx_transfer.json",
+      "type": "file"
+    },
+    {
+      "name": "sdk_post_accounts.json",
+      "type": "file"
+    },
+    {
+      "name": "sdk_post_transfer.json",
+      "type": "file"
+    }
+  ]
+}

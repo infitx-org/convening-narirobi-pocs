@@ -1,0 +1,24 @@
+{
+  "order": [
+    {
+      "name": "hub.json",
+      "type": "file"
+    },
+    {
+      "name": "participant_fxpayer.json",
+      "type": "file"
+    },
+    {
+      "name": "participant_fxpayee.json",
+      "type": "file"
+    },
+    {
+      "name": "participant_fxp.json",
+      "type": "file"
+    },
+    {
+      "name": "party_add.json",
+      "type": "file"
+    }
+  ]
+}
