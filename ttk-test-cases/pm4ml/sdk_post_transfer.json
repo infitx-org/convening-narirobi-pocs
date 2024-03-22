@@ -60,6 +60,114 @@
           "params": {
             "Type": "",
             "ID": ""
+          },
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "Status is 200",
+                "exec": [
+                  "expect(response.status).to.equal(200)"
+                ]
+              },
+              {
+                "id": 2,
+                "description": "Current state should be WAITING_FOR_PARTY_ACCEPTANCE",
+                "exec": [
+                  "expect(response.body.currentState).to.equal('WAITING_FOR_PARTY_ACCEPTANCE')"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "description": "Accept Party",
+          "apiVersion": {
+            "minorVersion": 1,
+            "majorVersion": 2,
+            "type": "mojaloop_connector_outbound",
+            "asynchronous": false,
+            "prefix": "/sdk-out",
+            "hostnames": [],
+            "specFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/api_spec.yaml",
+            "callbackMapFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/callback_map.json",
+            "responseMapFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/response_map.json",
+            "jsfRefFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/mockRef.json",
+            "triggerTemplatesFolder": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/trigger_templates"
+          },
+          "operationPath": "/transfers/{transferId}",
+          "path": "/transfers/{$prev.2.response.body.transferId}",
+          "method": "put",
+          "params": {
+            "transferId": "{$prev.2.response.body.transferId}"
+          },
+          "body": {
+            "acceptParty": true
+          },
+          "disabled": false,
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "Status is 200",
+                "exec": [
+                  "expect(response.status).to.equal(200)"
+                ]
+              },
+              {
+                "id": 2,
+                "description": "Current state should be WAITING_FOR_QUOTE_ACCEPTANCE",
+                "exec": [
+                  "expect(response.body.currentState).to.equal('WAITING_FOR_QUOTE_ACCEPTANCE')"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "description": "Accept Quote",
+          "apiVersion": {
+            "minorVersion": 1,
+            "majorVersion": 2,
+            "type": "mojaloop_connector_outbound",
+            "asynchronous": false,
+            "prefix": "/sdk-out",
+            "hostnames": [],
+            "specFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/api_spec.yaml",
+            "callbackMapFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/callback_map.json",
+            "responseMapFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/response_map.json",
+            "jsfRefFile": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/mockRef.json",
+            "triggerTemplatesFolder": "spec_files/api_definitions/mojaloop_connector_outbound_2.1/trigger_templates"
+          },
+          "operationPath": "/transfers/{transferId}",
+          "path": "/transfers/{$prev.2.response.body.transferId}",
+          "method": "put",
+          "params": {
+            "transferId": "{$prev.2.response.body.transferId}"
+          },
+          "body": {
+            "acceptQuote": true
+          },
+          "disabled": false,
+          "tests": {
+            "assertions": [
+              {
+                "id": 1,
+                "description": "Status is 200",
+                "exec": [
+                  "expect(response.status).to.equal(200)"
+                ]
+              },
+              {
+                "id": 2,
+                "description": "Current state should be COMPLETED",
+                "exec": [
+                  "expect(response.body.currentState).to.equal('COMPLETED')"
+                ]
+              }
+            ]
           }
         }
       ]
