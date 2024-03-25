@@ -8,6 +8,8 @@ curl 'https://test-mosippayee.devpm4ml.labspm4ml1002.mojaloop.live/mlcon-outboun
   -H 'accept-encoding: gzip, compress, deflate, br'
   --data-binary '[{"idType":"ALIAS","idValue":"abcdefghijklmnopqrstuvwxyz","currency":"EUR"}]'
 ```
+- For testing we can use TTK (https://ttkfront-mosippayee.devpm4ml.labspm4ml1002.mojaloop.live/admin/outbound_request)
+- Load test case `sdk_post_accounts.json` and environment file `switch-env.json`
 - Map the token to MIFOS account number (e.g. 987) by sending the following request
 ```
 curl --location 'https://pta-portal-mosippayee.devpm4ml.labspm4ml1002.mojaloop.live/tokens' \
@@ -18,7 +20,7 @@ curl --location 'https://pta-portal-mosippayee.devpm4ml.labspm4ml1002.mojaloop.l
     "payeeId": "987"
 }'
 ```
-- Access payer TTK and load the test case `sdk_post_transfer.json` and environment file `switch-env.json`
+- Access payer TTK (https://ttkfront-mosippayer.devpm4ml.labspm4ml1002.mojaloop.live/admin/outbound_request) and load the test case `sdk_post_transfer.json` and environment file `switch-env.json`
 - Modify the to field in the first request `POST /transfers` to the following
 ```
   "to": {
