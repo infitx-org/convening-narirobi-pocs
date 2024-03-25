@@ -389,7 +389,7 @@
       "apiVersion": {
         "minorVersion": 1,
         "majorVersion": 2,
-        "type": "mojaloop_connector_outbound",
+        "type": "mojaloop_connector_backend",
         "asynchronous": false
       },
       "conditions": {
@@ -433,7 +433,7 @@
       "apiVersion": {
         "minorVersion": 1,
         "majorVersion": 2,
-        "type": "mojaloop_connector_outbound",
+        "type": "mojaloop_connector_backend",
         "asynchronous": false
       },
       "conditions": {

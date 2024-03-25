@@ -3,7 +3,7 @@
 - Assume the token is `abcdefghijklmnopqrstuvwxyz`
 - Send post account call from payee pm4ml
 ```
-curl 'http://mosippayee-sdk-scheme-adapter-api-svc:4001/accounts'
+curl 'https://test-mosippayee.devpm4ml.labspm4ml1002.mojaloop.live/mlcon-outbound/accounts'
   -H 'content-type: application/json'
   -H 'accept-encoding: gzip, compress, deflate, br'
   --data-binary '[{"idType":"ALIAS","idValue":"abcdefghijklmnopqrstuvwxyz","currency":"EUR"}]'
